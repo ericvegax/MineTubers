@@ -22,6 +22,7 @@ import org.bukkit.craftbukkit.v1_18_R2.scoreboard.CraftScoreboard;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
 
@@ -48,7 +49,7 @@ public class CorpseEntity {
         corpse.startSleepInBed(new BlockPos(bed.getX(), bed.getY(), bed.getZ()));
 
         // Hide Name
-        Scoreboard scoreboard = ((CraftScoreboard) Bukkit.getScoreboardManager().getMainScoreboard()).getHandle();
+        Scoreboard scoreboard = ((CraftScoreboard) Objects.requireNonNull(Bukkit.getScoreboardManager()).getMainScoreboard()).getHandle();
         PlayerTeam team = new PlayerTeam(scoreboard, player.getName());
 
         team.setNameTagVisibility(Team.Visibility.NEVER);
@@ -78,7 +79,7 @@ public class CorpseEntity {
 
         // Send Packets
         for (Player pl : Bukkit.getOnlinePlayers()) {
-            ServerPlayerConnection connection = ((CraftPlayer) player).getHandle().connection;
+            ServerPlayerConnection connection = ((CraftPlayer) pl).getHandle().connection;
 
             connection.send(new ClientboundPlayerInfoPacket(ClientboundPlayerInfoPacket.Action.ADD_PLAYER, corpse));
 
