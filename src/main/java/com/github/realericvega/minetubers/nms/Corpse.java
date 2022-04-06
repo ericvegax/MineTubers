@@ -1,5 +1,7 @@
 package com.github.realericvega.minetubers.nms;
 
+import lombok.Getter;
+import lombok.Setter;
 import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.inventory.ItemStack;
@@ -10,10 +12,24 @@ import java.util.UUID;
 
 public class Corpse {
 
+    @Getter
+    @Setter
     private UUID whoDied;
+
+    @Getter
+    @Setter
     private ServerPlayer npc;
+
+    @Getter
+    @Setter
     private ItemStack[] items;
+
+    @Getter
+    @Setter
     private List<ArmorStand> armorStands;
+
+    @Getter
+    @Setter
     private long whenDied; //epoch time as long in ms
 
     public Corpse() {
@@ -25,46 +41,6 @@ public class Corpse {
         this.npc = npc;
         this.items = items;
         this.armorStands = armorStands;
-        this.whenDied = whenDied;
-    }
-
-    public List<ArmorStand> getArmorStands() {
-        return armorStands;
-    }
-
-    public void setArmorStands(List<ArmorStand> armorStands) {
-        this.armorStands = armorStands;
-    }
-
-    public ServerPlayer getNpc() {
-        return npc;
-    }
-
-    public void setNpc(ServerPlayer npc) {
-        this.npc = npc;
-    }
-
-    public UUID getWhoDied() {
-        return whoDied;
-    }
-
-    public void setWhoDied(UUID whoDied) {
-        this.whoDied = whoDied;
-    }
-
-    public ItemStack[] getItems() {
-        return items;
-    }
-
-    public void setItems(ItemStack[] items) {
-        this.items = items;
-    }
-
-    public long getWhenDied() {
-        return whenDied;
-    }
-
-    public void setWhenDied(long whenDied) {
         this.whenDied = whenDied;
     }
 }
