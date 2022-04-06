@@ -1,5 +1,6 @@
 package com.github.realericvega.minetubers.listener;
 
+import com.github.realericvega.minetubers.MineTubersPlugin;
 import com.github.realericvega.minetubers.algo.NPCSpawnerAlgo;
 import com.github.realericvega.minetubers.nms.util.CorpseEntity;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPlayer;
@@ -10,16 +11,31 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 
 public class DamageListener implements Listener {
+
+    private final MineTubersPlugin PLUGIN;
+
+    public DamageListener(MineTubersPlugin plugin) {
+        this.PLUGIN = plugin;
+    }
+
+    @EventHandler
+    public void onDeath(EntityDeathEvent event) {
+        if (event.getEntity() instanceof Player) {
+            if (NPCSpawnerAlgo.getNPCList().contains(((CraftPlayer) event.getEntity()).getHandle())) {
+                PLUGIN.getCorpseManager().getCorpses().add(CorpseEntity.createCorpse((Player) event.getEntity()));
+            }
+        }
+        event.getDrops().clear();
+    }
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onDamage(EntityDamageEvent event) {
         if (event.getEntity() instanceof Player) {
             if (event.getFinalDamage() >= ((Player) event.getEntity()).getHealth()) {
-                if (NPCSpawnerAlgo.getNPCList().contains(((CraftPlayer) event.getEntity()).getHandle())) {
-                    CorpseEntity.createCorpse((Player) event.getEntity());
-                }
+                // Check if the player wants corpses to be created on "Damage" instead of on "Death"
             }
         }
     }
