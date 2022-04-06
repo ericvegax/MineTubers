@@ -1,5 +1,6 @@
-package com.github.realericvega.minetubers.nms;
+package com.github.realericvega.minetubers.nms.util;
 
+import com.github.realericvega.minetubers.nms.MineTubeSkin;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoPacket;
 import net.minecraft.server.network.ServerPlayerConnection;
