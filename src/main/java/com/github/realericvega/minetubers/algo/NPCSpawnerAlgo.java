@@ -1,6 +1,7 @@
 package com.github.realericvega.minetubers.algo;
 
 import com.github.realericvega.minetubers.MineTubersPlugin;
+import com.github.realericvega.minetubers.manager.NPCSpawnerManager;
 import com.github.realericvega.minetubers.nms.MineTuber;
 import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.Bukkit;
@@ -14,10 +15,10 @@ import java.util.*;
 
 public class NPCSpawnerAlgo {
 
-    private final Map<Player, MineTuber> MINETUBER_MAP = new HashMap<>();
-
     private static NPCSpawnerAlgo instance;
-    private static List<ServerPlayer> npc_list;
+
+    private static final List<ServerPlayer> NPC_LIST = NPCSpawnerManager.getNpc_list();
+    private final Map<Player, MineTuber> MINETUBER_MAP = NPCSpawnerManager.getMINETUBER_MAP();
 
     public static NPCSpawnerAlgo get() {
         if (instance == null)
@@ -34,7 +35,9 @@ public class NPCSpawnerAlgo {
             public void run() {
                 for (Player player : Bukkit.getOnlinePlayers()) {
                     for (MineTuber tuber : mineTuber) {
-                        tuber.getNMSPlayer().createNPC().apply(player, player.getLocation(), tuber.getNAME());
+                        if (canSpawn(player.getLocation())) {
+                            tuber.getNMSPlayer().createNPC().apply(player, player.getLocation(), tuber.getNAME());
+                        }
                     }
                 }
             }
@@ -75,9 +78,5 @@ public class NPCSpawnerAlgo {
         double random = Math.random();
         if (random >= 0.5) random *= -1.0;
         return random;
-    }
-
-    public static List<ServerPlayer> getNPCList() {
-        return npc_list;
     }
 }

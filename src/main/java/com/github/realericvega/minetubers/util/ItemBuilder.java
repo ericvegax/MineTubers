@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 
 public final class ItemBuilder {
 
-    private static final ItemFlag[] ALL_FLAGS = {
+    private static final ItemFlag[] ITEM_FLAGS = {
             ItemFlag.HIDE_UNBREAKABLE, ItemFlag.HIDE_DYE,
             ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_DESTROYS,
             ItemFlag.HIDE_ENCHANTS, ItemFlag.HIDE_PLACED_ON,
