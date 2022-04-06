@@ -1,8 +1,9 @@
-package com.github.realericvega.minetubers.nms.v1_18;
+package com.github.realericvega.minetubers.nms.v1_18_2;
 
 import com.github.realericvega.minetubers.algo.NPCSpawnerAlgo;
+import com.github.realericvega.minetubers.nms.MineTubeSkin;
 import com.github.realericvega.minetubers.nms.NMSPlayer;
-import com.github.realericvega.minetubers.nms.Phase;
+import com.github.realericvega.minetubers.nms.Progressible;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.mojang.datafixers.util.Function3;
@@ -34,12 +35,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Technoblade_v1_18 extends NMSPlayer implements Phase {
+public class Technoblade_v1_18_2 extends NMSPlayer implements Progressible {
 
     private ServerPlayer _npc;
+    private boolean phaseChanged = false;
+
     private final NamespacedKey PHASE_KEY;
 
-    public Technoblade_v1_18(JavaPlugin plugin) {
+    public Technoblade_v1_18_2(JavaPlugin plugin) {
         PHASE_KEY = new NamespacedKey(plugin, "phase");
     }
 
@@ -57,9 +60,7 @@ public class Technoblade_v1_18 extends NMSPlayer implements Phase {
 
             npc.setPos(location.getBlockX(), location.getBlockY(), location.getBlockZ());
 
-            String signature = "ArwoD4sGhthC32Qaq1oSwNOWPciJN54mLj+Tq0tZBUMCaw7Gnpj6W9HJhLrax6gVs8X3O5cWUrgLbAIF8uelb5jLdUpm9ZFsAFUo/MtE3oqCXBjoXw8+Wn8y8WR1UAXwv0ts+C6OSyOfLGk0tR7Jmkac6G7bUKYOAMFtCGcppdmoxvhALHPkcsPmdlE8SsHhOVDBp+SE9SBA0V5Z2YDTua34bLdCh4jHibb9x6D8yLxos5ksqcUzsLW9HZ6gqt29GqRD3+M2q1VyXyOjQCR1MD/5A0WfFAFBtExWPRn4V8Fl8a6+814a84H6apaoIN0e6rZHC9ArLEbfSStS54YbjFZ5jfUHx4jkyg0n16B14Z7KLVRmWJjUPtICWaW7zlOOzzq+ZkV1fckVmXEA0Ri349DnWMSGU44nkgPsjD5PL9PLdDqhWqXQGL9f3C+XmUC+5WWdE1cA2W+ZrTN0mZajlkmcwYL0priAZZfzubhVV6PqWAaM9phgaoK7s5oQc6ruaXObauGZvxZ2p+LDx8A+AKnpxSPvjE+fVoOZUAvzVIhwXkFo8Y7+lJi29GjNS8f+fZctPivnABnK2oHXVapvdWlOfpTg/Y8cgc+GHhsvY82f9p7tyFAjV59Ps2G3TDjNbxm7iRaNs4MBUf2e8+mQFt/MbbblCfDBMUOprV0vjks=";
-            String texture = "ewogICJ0aW1lc3RhbXAiIDogMTYzMzI2Mzg5NjIyNSwKICAicHJvZmlsZUlkIiA6ICIwNjlhNzlmNDQ0ZTk0NzI2YTViZWZjYTkwZTM4YWFmNSIsCiAgInByb2ZpbGVOYW1lIiA6ICJOb3RjaCIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS8yOTIwMDlhNDkyNWI1OGYwMmM3N2RhZGMzZWNlZjA3ZWE0Yzc0NzJmNjRlMGZkYzMyY2U1NTIyNDg5MzYyNjgwIgogICAgfQogIH0KfQ==";
-            npc.getGameProfile().getProperties().put("textures", new Property("textures", texture, signature));
+            npc.getGameProfile().getProperties().put("textures", new Property("textures", MineTubeSkin.TECHNOBLADE.getTEXTURE(), MineTubeSkin.TECHNOBLADE.getSIGNATURE()));
 
             //Send the packets to artificially spawn this entity, only the client we are sending the packet to will know of it's existence
             ServerGamePacketListenerImpl ps = craftPlayer.getHandle().connection;
@@ -98,9 +99,20 @@ public class Technoblade_v1_18 extends NMSPlayer implements Phase {
 
         try {
             if (pd.get(PHASE_KEY, PersistentDataType.INTEGER) != null) {
+                int key = pd.get(PHASE_KEY, PersistentDataType.INTEGER);
 
+                if (key == 1)
+                    pd.set(PHASE_KEY, PersistentDataType.INTEGER, 2);
+
+                 else if (key == 2)
+                    pd.set(PHASE_KEY, PersistentDataType.INTEGER, 1);
+
+                 else
+                     pd.set(PHASE_KEY, PersistentDataType.INTEGER, -1);
+
+                phaseChanged = true;
             } else {
-
+                pd.set(PHASE_KEY, PersistentDataType.INTEGER, 0);
             }
         } catch (NullPointerException exception) {
             exception.printStackTrace();
@@ -109,7 +121,7 @@ public class Technoblade_v1_18 extends NMSPlayer implements Phase {
 
     @Override
     public boolean hasChangedPhase(ServerPlayer npc) {
-        return false;
+        return this.phaseChanged;
     }
 
     @Override
