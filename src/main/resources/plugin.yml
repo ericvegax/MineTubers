@@ -3,4 +3,4 @@ version: '${project.version}'
 main: com.github.realericvega.minetubers.MineTubersPlugin
 api-version: 1.18
 authors: [ realericvega ]
-description: Add Your Favorite Minecraft YouTubers Into Your Minecraft Server! Craft & Collect Special Items, Support Your Favorite YouTuber By Having Them On Your Server!
+description: Add Your Favorite Minecraft YouTubers Into Your Minecraft Server! Craft & Collect Special Items, Support Your Favorite YouTuber By Having Them On Your Server! Fight against them, or join them!

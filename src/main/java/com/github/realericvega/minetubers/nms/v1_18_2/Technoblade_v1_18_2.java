@@ -99,12 +99,10 @@ public class Technoblade_v1_18_2 extends NMSPlayer implements Progressible {
 
         try {
             if (pd.get(PHASE_KEY, PersistentDataType.INTEGER) != null) {
-                int key = pd.get(PHASE_KEY, PersistentDataType.INTEGER);
-
-                if (key == 1)
+                if (pd.get(PHASE_KEY, PersistentDataType.INTEGER).intValue() == 1)
                     pd.set(PHASE_KEY, PersistentDataType.INTEGER, 2);
 
-                 else if (key == 2)
+                 else if (pd.get(PHASE_KEY, PersistentDataType.INTEGER).intValue() == 2)
                     pd.set(PHASE_KEY, PersistentDataType.INTEGER, 1);
 
                  else

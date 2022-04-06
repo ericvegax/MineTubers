@@ -9,6 +9,11 @@ import org.bukkit.entity.Player;
 
 public class SkinGrabber {
 
+    /**
+     *
+     * @param player The target player
+     * @param skin The skin to change the player into
+     */
     public static void changeSkins(Player player, MineTubeSkin skin) {
         GameProfile profile = ((CraftPlayer) player).getHandle().getGameProfile();
         ServerPlayerConnection connection = ((CraftPlayer) player).getHandle().connection;

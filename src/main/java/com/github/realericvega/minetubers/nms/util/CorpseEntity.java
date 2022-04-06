@@ -28,6 +28,10 @@ import java.util.UUID;
 
 public class CorpseEntity {
 
+    /**
+     *
+     * @param player The player to create a corpse of
+     */
     public static void createCorpse(Player player) {
         ServerPlayer serverPlayer = ((CraftPlayer) player).getHandle();
 
