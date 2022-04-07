@@ -1,6 +1,7 @@
 package com.github.realericvega.minetubers.nms.v1_18_2;
 
 import com.github.realericvega.minetubers.algo.NPCSpawnerAlgo;
+import com.github.realericvega.minetubers.manager.NPCSpawnerManager;
 import com.github.realericvega.minetubers.nms.MineTubeSkin;
 import com.github.realericvega.minetubers.nms.NMSPlayer;
 import com.github.realericvega.minetubers.nms.Progressible;
@@ -87,7 +88,7 @@ public class Technoblade_v1_18_2 extends NMSPlayer implements Progressible {
 
             ps.send(new ClientboundSetEquipmentPacket(npc.getBukkitEntity().getEntityId(), List.of(Pair.of(EquipmentSlot.MAINHAND, CraftItemStack.asNMSCopy(item)))));
 
-            NPCSpawnerAlgo.getNPCList().add(npc);
+            NPCSpawnerManager.getNpc_list().add(npc);
             this._npc = npc;
             return npc;
         };

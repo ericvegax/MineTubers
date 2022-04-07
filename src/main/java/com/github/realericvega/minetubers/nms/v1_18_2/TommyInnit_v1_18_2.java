@@ -1,6 +1,7 @@
 package com.github.realericvega.minetubers.nms.v1_18_2;
 
 import com.github.realericvega.minetubers.algo.NPCSpawnerAlgo;
+import com.github.realericvega.minetubers.manager.NPCSpawnerManager;
 import com.github.realericvega.minetubers.nms.MineTubeSkin;
 import com.github.realericvega.minetubers.nms.NMSPlayer;
 import com.mojang.authlib.GameProfile;
@@ -47,7 +48,7 @@ public class TommyInnit_v1_18_2 extends NMSPlayer {
             //Spawn Player packet
             ps.send(new ClientboundAddPlayerPacket(npc));
 
-            NPCSpawnerAlgo.getNPCList().add(npc);
+            NPCSpawnerManager.getNpc_list().add(npc);
             return npc;
         };
     }

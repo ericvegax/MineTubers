@@ -34,7 +34,7 @@ public class CorpseEntity {
 
     /**
      *
-     * @param player The player to create a corpse of
+     * @param player The player/players to show the corpse too
      */
     public static Corpse createCorpse(Player player) {
         Corpse body = new Corpse();
@@ -43,9 +43,9 @@ public class CorpseEntity {
         body.setItems(Arrays.stream(player.getInventory().getContents()).filter(Objects::nonNull).toArray(ItemStack[]::new));
         body.setWhenDied(System.currentTimeMillis());
 
-        ServerPlayer serverPlayer = ((CraftPlayer) player).getHandle();
+        ServerPlayer npc = ((CraftPlayer) player).getHandle();
 
-        Property textures = (Property) serverPlayer.getBukkitEntity().getHandle().getGameProfile().getProperties().get("textures").toArray()[0];
+        Property textures = (Property) npc.getBukkitEntity().getHandle().getGameProfile().getProperties().get("textures").toArray()[0];
         GameProfile gameProfile = new GameProfile(UUID.randomUUID(), player.getName());
 
         // Gets the targets Texture & Signature
@@ -111,10 +111,10 @@ public class CorpseEntity {
             }.runTaskAsynchronously(MineTubersPlugin.getPlugin(MineTubersPlugin.class));
         });
 
-        body.setNpc(serverPlayer);
+        body.setNpc(npc);
 
         body.getArmorStands().add(player.getWorld().spawn(player.getLocation(), ArmorStand.class, armorstand1 -> {
-            armorstand1 = (ArmorStand) player.getWorld().spawnEntity(serverPlayer.getBukkitEntity().getLocation(), EntityType.ARMOR_STAND);
+            armorstand1 = (ArmorStand) player.getWorld().spawnEntity(npc.getBukkitEntity().getLocation(), EntityType.ARMOR_STAND);
 
             armorstand1.setSmall(true);
             armorstand1.setInvisible(true);
@@ -122,7 +122,7 @@ public class CorpseEntity {
         }));
 
         body.getArmorStands().add(player.getWorld().spawn(player.getLocation(), ArmorStand.class, armorstand2 -> {
-            armorstand2 = (ArmorStand) player.getWorld().spawnEntity(serverPlayer.getBukkitEntity().getLocation().subtract(1, 0, 0), EntityType.ARMOR_STAND);
+            armorstand2 = (ArmorStand) player.getWorld().spawnEntity(npc.getBukkitEntity().getLocation().subtract(1, 0, 0), EntityType.ARMOR_STAND);
 
             armorstand2.setSmall(true);
             armorstand2.setInvisible(true);
@@ -130,7 +130,7 @@ public class CorpseEntity {
         }));
 
         body.getArmorStands().add(player.getWorld().spawn(player.getLocation(), ArmorStand.class, armorstand3 -> {
-            armorstand3 = (ArmorStand) player.getWorld().spawnEntity(serverPlayer.getBukkitEntity().getLocation().subtract(2, 0, 0), EntityType.ARMOR_STAND);
+            armorstand3 = (ArmorStand) player.getWorld().spawnEntity(npc.getBukkitEntity().getLocation().subtract(2, 0, 0), EntityType.ARMOR_STAND);
 
             armorstand3.setSmall(true);
             armorstand3.setInvisible(true);

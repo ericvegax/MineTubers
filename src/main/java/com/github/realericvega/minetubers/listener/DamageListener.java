@@ -2,6 +2,8 @@ package com.github.realericvega.minetubers.listener;
 
 import com.github.realericvega.minetubers.MineTubersPlugin;
 import com.github.realericvega.minetubers.algo.NPCSpawnerAlgo;
+import com.github.realericvega.minetubers.manager.NPCSpawnerManager;
+import com.github.realericvega.minetubers.nms.Corpse;
 import com.github.realericvega.minetubers.nms.util.CorpseEntity;
 import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPlayer;
 import org.bukkit.entity.Arrow;
@@ -24,7 +26,7 @@ public class DamageListener implements Listener {
     @EventHandler
     public void onDeath(EntityDeathEvent event) {
         if (event.getEntity() instanceof Player) {
-            if (NPCSpawnerAlgo.getNPCList().contains(((CraftPlayer) event.getEntity()).getHandle())) {
+            if (NPCSpawnerManager.getNpc_list().contains(((CraftPlayer) event.getEntity()).getHandle())) {
                 PLUGIN.getCorpseManager().getCorpses().add(CorpseEntity.createCorpse((Player) event.getEntity()));
             }
         }
@@ -50,5 +52,9 @@ public class DamageListener implements Listener {
                  */
             }
         }
+    }
+
+    private void dropItems(Player whoClicked, Corpse corpse) {
+
     }
 }

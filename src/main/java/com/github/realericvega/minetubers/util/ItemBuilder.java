@@ -1,5 +1,6 @@
 package com.github.realericvega.minetubers.util;
 
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -48,5 +49,9 @@ public final class ItemBuilder {
             lore.add(Text.colorize(line));
             im.setLore(lore);
         });
+    }
+
+    public ItemBuilder setEnchantment(Enchantment enchantment, int level, boolean ignoreLevelRestriction) {
+        return this.transformItemMeta(im -> im.addEnchant(enchantment, level, ignoreLevelRestriction));
     }
 }
