@@ -11,7 +11,7 @@ import org.bukkit.entity.ArmorStand;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CorpseManager {
+public final class CorpseManager {
 
     private final List<Corpse> corpses;
 
@@ -28,7 +28,7 @@ public class CorpseManager {
             ServerGamePacketListenerImpl ps = ((CraftPlayer) player).getHandle().connection;
 
             // Removes the corpse from the TabList
-            ps.send(new ClientboundPlayerInfoPacket(ClientboundPlayerInfoPacket.Action.REMOVE_PLAYER, corpse.getNpc()));
+            ps.send(new ClientboundPlayerInfoPacket(ClientboundPlayerInfoPacket.Action.REMOVE_PLAYER, corpse.getNpc())); // Error: ClientboundPlayerInfoPacket cannot be found
 
             // Removes the corpse from sight
             ps.send(new ClientboundRemoveEntitiesPacket(corpse.getNpc().getId()));

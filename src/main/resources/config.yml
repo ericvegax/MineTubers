@@ -1,1 +1,4 @@
-
+redis-settings:
+  redis-host: ""
+  redis-port: 3306
+  enable-redis: true

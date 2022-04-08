@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CommandManager {
+public final class CommandManager {
 
     private static CommandManager instance;
     private static BukkitCommandManager manager;
@@ -32,14 +32,25 @@ public class CommandManager {
         return manager;
     }
 
+    /**
+     * @TODO: Optimize this, so that it automatically registers every command in the "command" package
+     */
     public void registerCommands() {
         BASE_COMMANDS.forEach(baseCommand -> {
             if (Arrays.stream(baseCommand.getClass().getFields()).
                     anyMatch(field -> field.isAnnotationPresent(Dependency.class) && field.getType() == MineTubersPlugin.class)) {
-                getBukkitCommandManager().registerDependency(MineTubersPlugin.class, baseCommand);
+                getBukkitCommandManager().registerDependency(MineTubersPlugin.class, "plugin", baseCommand);
             } else {
                 getBukkitCommandManager().registerCommand(baseCommand);
             }
         });
+        registerCommandCompletions();
+    }
+
+    /**
+     * This function handles the registration of Tab Complete
+     */
+    public void registerCommandCompletions() {
+
     }
 }

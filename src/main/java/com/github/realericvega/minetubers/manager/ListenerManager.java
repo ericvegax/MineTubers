@@ -1,6 +1,6 @@
 package com.github.realericvega.minetubers.manager;
 
-public class ListenerManager {
+public final class ListenerManager {
 
     private static ListenerManager instance;
 

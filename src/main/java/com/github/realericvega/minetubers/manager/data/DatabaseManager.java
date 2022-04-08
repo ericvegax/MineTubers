@@ -6,7 +6,7 @@ import lombok.Setter;
 import java.sql.*;
 import java.util.function.Function;
 
-public class DatabaseManager {
+public final class DatabaseManager {
 
     private static DatabaseManager instance;
 

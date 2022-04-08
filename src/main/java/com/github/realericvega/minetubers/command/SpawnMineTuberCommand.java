@@ -7,10 +7,10 @@ import co.aikar.commands.annotation.Subcommand;
 import org.bukkit.entity.Player;
 
 @CommandAlias("minetuber|mt")
-public class HelpCommand extends BaseCommand implements MineTuberCommand {
+public class SpawnMineTuberCommand extends BaseCommand implements MineTuberCommand {
 
-    @Subcommand("help")
-    @CommandPermission("mintuber.command.help")
+    @Subcommand("spawn")
+    @CommandPermission("minetuber.command.spawn")
     @Override
     public void execute(Player player) {
 

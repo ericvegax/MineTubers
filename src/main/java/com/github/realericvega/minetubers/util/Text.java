@@ -3,7 +3,7 @@ package com.github.realericvega.minetubers.util;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class Text {
+public final class Text {
 
     /**
      *

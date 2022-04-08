@@ -18,6 +18,8 @@ public final class MineTubersPlugin extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        CommandManager.getInstance().registerCommands();
+
         corpseManager = new CorpseManager();
 
         Bukkit.getLogger().log(Level.INFO, "MineTubers has been initialized!");

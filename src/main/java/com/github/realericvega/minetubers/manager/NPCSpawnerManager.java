@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class NPCSpawnerManager {
+public final class NPCSpawnerManager {
 
     @Getter
     private static List<ServerPlayer> npc_list;
