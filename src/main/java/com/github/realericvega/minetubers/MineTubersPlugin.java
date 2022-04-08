@@ -1,5 +1,6 @@
 package com.github.realericvega.minetubers;
 
+import com.github.realericvega.minetubers.manager.CommandManager;
 import com.github.realericvega.minetubers.manager.CorpseManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;

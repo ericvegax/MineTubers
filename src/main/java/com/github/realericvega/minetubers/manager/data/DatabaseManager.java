@@ -34,7 +34,6 @@ public class DatabaseManager {
     @Setter
     private Connection connection;
 
-
     public static DatabaseManager init() {
         if (instance == null)
             instance = new DatabaseManager();

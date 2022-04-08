@@ -5,6 +5,11 @@ import org.bukkit.entity.Player;
 
 public class Text {
 
+    /**
+     *
+     * @param str The string to format
+     * @return A color coded String
+     */
     public static String colorize(String str) {
         return ChatColor.translateAlternateColorCodes('&', str);
     }
