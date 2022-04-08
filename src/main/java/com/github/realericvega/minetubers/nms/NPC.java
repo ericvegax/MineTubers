@@ -5,7 +5,7 @@ import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-public abstract class NMSPlayer {
+public interface NPC {
 
-    public abstract Function3<Player, Location, String, ServerPlayer> createNPC();
+    Function3<Player, Location, String, ServerPlayer> createNPC();
 }

@@ -1,9 +1,8 @@
 package com.github.realericvega.minetubers.nms.v1_18_2;
 
-import com.github.realericvega.minetubers.algo.NPCSpawnerAlgo;
 import com.github.realericvega.minetubers.manager.NPCSpawnerManager;
 import com.github.realericvega.minetubers.nms.MineTubeSkin;
-import com.github.realericvega.minetubers.nms.NMSPlayer;
+import com.github.realericvega.minetubers.nms.NPC;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.mojang.datafixers.util.Function3;
@@ -20,7 +19,7 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public class TommyInnit_v1_18_2 extends NMSPlayer {
+public class TommyInnit_v1_18_2 implements NPC {
 
     @Override
     public Function3<Player, Location, String, ServerPlayer> createNPC() {

@@ -10,26 +10,26 @@ public enum MineTuber {
 
     TECHNOBLADE("Technoblade") {
         @Override
-        public NMSPlayer getNMSPlayer() {
+        public NPC getNMSPlayer() {
             return new Technoblade_v1_18_2(MineTubersPlugin.getPlugin(MineTubersPlugin.class));
         }
     },
     HYPIXEL("Hypixel") {
         @Override
-        public NMSPlayer getNMSPlayer() {
+        public NPC getNMSPlayer() {
             return new Hypixel_v1_18_2();
         }
     },
     DREAM("Dream") {
         @Override
-        public NMSPlayer getNMSPlayer() {
+        public NPC getNMSPlayer() {
             return new Dream_v1_18_2();
         }
     },
 
     TOMMY_INNIT("TommyInnit") {
         @Override
-        public NMSPlayer getNMSPlayer() {
+        public NPC getNMSPlayer() {
             return null;
         }
     };
@@ -41,5 +41,5 @@ public enum MineTuber {
         this.NAME = name;
     }
 
-    public abstract NMSPlayer getNMSPlayer();
+    public abstract NPC getNMSPlayer();
 }

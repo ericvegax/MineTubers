@@ -1,9 +1,8 @@
 package com.github.realericvega.minetubers.nms.v1_18_2;
 
-import com.github.realericvega.minetubers.algo.NPCSpawnerAlgo;
 import com.github.realericvega.minetubers.manager.NPCSpawnerManager;
 import com.github.realericvega.minetubers.nms.MineTubeSkin;
-import com.github.realericvega.minetubers.nms.NMSPlayer;
+import com.github.realericvega.minetubers.nms.NPC;
 import com.github.realericvega.minetubers.nms.Progressible;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
@@ -36,7 +35,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Technoblade_v1_18_2 extends NMSPlayer implements Progressible {
+public class Technoblade_v1_18_2 implements NPC, Progressible {
 
     private ServerPlayer _npc;
     private boolean phaseChanged = false;
